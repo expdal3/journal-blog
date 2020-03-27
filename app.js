@@ -21,7 +21,7 @@ const _ = require('lodash');
 const dashify = require('dashify');
 
 let posts = [];
-
+let trunclen = 100;
 
 //+-----------------------------------------------+
 //|    HOME PAGE, ABOUT AND CONTACT PAGE ROUTE 
@@ -32,7 +32,8 @@ app.get("/", function(req, res) {
     // var title = $("h1").text
     res.render("home", {
         HomeEJScontent: homeStartingContent,
-        HomeEJS_posts: posts
+        HomeEJS_posts: posts,
+        HomeEJS_len: trunclen
     });
     // let day = date.getDay();
     // //render "list.ejs" (foler 'views') and pass the 'day' variable to TypeOfDay inside the list.ejs
@@ -67,10 +68,10 @@ app.get("/posts/:postName", function(req, res) {
 
     posts.forEach(function(post) {
         const storedTitle = dashify(_.lowerCase(post._postTitle));
-        console.log("the storedTitle is:" + storedTitle + "\n" +
-            "the requestedTitle is:" + requestedTitle);
+        // console.log("the storedTitle is:" + storedTitle + "\n" +
+        //     "the requestedTitle is:" + requestedTitle);
         if (requestedTitle === storedTitle) {
-            let requestedURL = "posts/" + storedTitle;
+
             res.render('post', {
                 title: post._postTitle,
                 content: post._postBody,

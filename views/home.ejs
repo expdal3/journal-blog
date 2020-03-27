@@ -16,12 +16,13 @@
 
                 <div class="item">
                     <h3 class="post-title">
-                        <a href=<%=post._postURL%>  >
+                        <a href="/posts/<%=post._postTitle  %>">
                             <%= post._postTitle %>
-                                </a>
+                        </a>
                     </h3>
                     <p>
-                        <%= post._postBody %>
+                        <%= post._postBody.substring(0, HomeEJS_len) + "... "%>
+                            <a href="/posts/<%=post._postTitle  %>"> Read more</a>
                     </p>
                 </div>
                 <% }) %>
