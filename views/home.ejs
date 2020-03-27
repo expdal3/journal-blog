@@ -1,0 +1,30 @@
+<%- include("partials/header") -%>
+
+    <h1 name="pagetitle">Home</h1>
+    <p name="homepagecontent">
+        <%= HomeEJScontent %>
+    </p>
+    <%# redirect to home route %>
+        <form class="item" action="/" method="post">
+            <button type="submit" class="btn btn-dark btn-lg compose-btn" name="btnToCompose"> New post </button>
+        </form>
+
+        <hr>
+        <h1> Latest posts </h1>
+        <div class="box">
+            <% HomeEJS_posts.slice().reverse().forEach(function(post){  %>
+
+                <div class="item">
+                    <h3 class="post-title">
+                        <a href=<%=post._postURL%>  >
+                            <%= post._postTitle %>
+                                </a>
+                    </h3>
+                    <p>
+                        <%= post._postBody %>
+                    </p>
+                </div>
+                <% }) %>
+
+        </div>
+        <%- include("partials/footer") -%>
